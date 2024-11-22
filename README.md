@@ -1,70 +1,123 @@
-# Getting Started with Create React App
+# Movie List App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a **Movie List** application built using **React**, **Material-UI (MUI)**, and **React Query**. It fetches movie data from the OMDb API and displays it in a dynamic, paginated, and searchable list format. The movie list supports **infinite scrolling**, and each movie item can be expanded to show additional details like genre, director, and plot.
 
-## Available Scripts
+## Live URL : https://movie-explorer-mikelegal.netlify.app/
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- **Collapsible Movie List**: Each movie item can be expanded to show additional details (e.g., Year, Genre, Director, Plot, Poster).
+- **Infinite Scrolling**: Load more movies as the user scrolls down.
+- **Search Functionality**: Search for movies by title.
+- **Loading and Error Handling**: Display a loading spinner and error messages if the API request fails.
+- **Material-UI** for sleek design and responsive UI.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Project Structure
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```
+movie-list/
+├── src/
+│   ├── components/           # React components for the app
+│   │   ├── MovieList.jsx     # Main movie list component with infinite scrolling
+│   │   ├── MovieItem.jsx     # Movie item component (individual movie details)
+│   │   ├── SearchBar.jsx     # Search input field for searching movies
+│   │   ├── LoadingSpinner.jsx # Loading spinner component
+│   │   └── ErrorMessage.jsx  # Error message component
+│   ├── hooks/                # Custom React hooks
+│   │   └── useFetchMovies.js # Hook for fetching movie data
+│   ├── App.js                # Main app component, wraps everything
+│   ├── index.js              # Entry point for React app
+└── package.json              # Project dependencies and scripts
+```
 
-### `npm test`
+## Dependencies
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- @mui/material: For Material-UI components.
+- @tanstack/react-query: For data fetching and infinite scroll functionality.
+- react-infinite-scroll-component: For implementing infinite scrolling.
+- react: JavaScript library for building UI.
+- react-dom: Provides DOM-specific methods for React.
+- react-scripts: Scripts to build and run the React app.
 
-### `npm run build`
+## Prerequisites
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To run the project locally, you will need:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Node.js (version 14 or above)
+- npm or yarn (Node package managers)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#
 
-### `npm run eject`
+# Setup Instructions
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 1. Clone the Repository
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Clone the repository to your local machine using the following command:
+`git clone https://github.com/your-username/movie-list-app.git`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 2. Install Dependencies
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Navigate into the project directory and install the dependencies:
 
-## Learn More
+```
+cd movie-list-app
+npm install
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 3. Obtain OMDb API Key
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+To fetch movie data, you'll need an API key from OMDb API.
 
-### Code Splitting
+Steps to Get an API Key:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- Go to OMDb API website.
+- Register or log in to create an account.
+- After registration, you'll receive a unique API key.
+- Once you have the API key, follow these steps to securely integrate it into your project:
 
-### Analyzing the Bundle Size
+## Create a .env file in the root directory of the project.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Add the following line to the .env file:
+`REACT_APP_OMDB_API_KEY=your-api-key-here`
+Replace your-api-key-here with the actual API key you received from OMDb.
 
-### Making a Progressive Web App
+Note: The .env file should not be committed to the version control (e.g., Git) for security reasons.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## 4. Running the Project Locally
 
-### Advanced Configuration
+After installing the dependencies and setting up the API key, run the project locally by using:
+`npm start`
+This will start the development server, and you can open the app in your browser at http://localhost:3000.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## 5. Build the Project for Production
 
-### Deployment
+To build the app for production, run the following command:
+`npm run build`
+This will bundle the app into static files that can be deployed.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## 6. API Key Handling in the Code
 
-### `npm run build` fails to minify
+In the code, the API key is fetched from the .env file using the process.env.REACT_APP_OMDB_API_KEY variable. The useFetchMovies hook makes API requests to the OMDb API using this key.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+#
+
+## Component Details
+
+1. MovieList.jsx
+   This is the main component that fetches and displays the list of movies. It uses React Query's useInfiniteQuery hook to handle pagination and infinite scrolling.
+
+2. MovieItem.jsx
+   This component renders each individual movie item. When clicked, the item expands to show more information about the movie (e.g., Year, Genre, Director, Plot).
+
+3. SearchBar.jsx
+   A search bar component that allows the user to search for movies by title. The search results are updated dynamically as the search term changes.
+
+4. LoadingSpinner.jsx
+   This component displays a loading spinner while the data is being fetched from the API.
+
+5. ErrorMessage.jsx
+   Displays error messages if something goes wrong with the API request.
+
+## Styling
+
+The app uses Material-UI (MUI) components for the UI elements, ensuring a modern, sleek design with a dark theme. The overall layout is responsive, and the components are styled using MUI’s sx prop and default theme configurations.
